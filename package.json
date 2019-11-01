@@ -1,0 +1,39 @@
+{
+  "name": "react-semanticui-starter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "WinPooh32",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/react": "^16.9.11",
+    "@types/react-dom": "^16.9.3",
+    "@types/webpack-env": "^1.14.1",
+    "clean-webpack-plugin": "^3.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-snap": "^1.23.0",
+    "semantic-ui-react": "^0.87.2",
+    "source-map-loader": "^0.2.4",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.6.4",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
+  },
+  "scripts": {
+    "build": "webpack",
+    "postbuild": "react-snap",
+    "serve": "webpack-dev-server"
+  },
+  "reactSnap": {
+    "source": "dist",
+    "minifyHtml": {
+      "sortClassName": false,
+      "collapseWhitespace": false,
+      "removeComments": true
+    }
+  }
+}
