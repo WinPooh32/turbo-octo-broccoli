@@ -1,14 +1,14 @@
 const {
     CleanWebpackPlugin
-} = require("clean-webpack-plugin"); // installed via npm
-const HtmlWebpackPlugin = require("html-webpack-plugin"); // installed via npm
-const webpack = require("webpack"); // to access built-in plugins
-const path = require("path");
+} = require("clean-webpack-plugin") // installed via npm
+const HtmlWebpackPlugin = require("html-webpack-plugin") // installed via npm
+const webpack = require("webpack") // to access built-in plugins
+const path = require("path")
 
-const buildMode = "development" // production development
+const prodMode = true // production development
 
-module.exports = {
-    mode: buildMode,
+let pack = {
+    mode: prodMode ? "production" : "development",
 
     entry: [
         "./src/index.tsx"
@@ -34,12 +34,6 @@ module.exports = {
         path: path.resolve(process.cwd(), "dist"),
     },
 
-    devServer: {
-        host: '0.0.0.0',
-        port: 8080,
-        hot: true
-    },
-
     module: {
         rules: [{
                 test: /\.ts(x?)$/,
@@ -58,15 +52,16 @@ module.exports = {
     },
 
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
         new webpack.ProgressPlugin(),
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: "./src/index.html",
-            react: (buildMode === "development") ?
-                "https://unpkg.com/react@16/umd/react.development.js" : "https://unpkg.com/react@16/umd/react.production.min.js",
-            reactdom: (buildMode === "development") ?
-                "https://unpkg.com/react-dom@16/umd/react-dom.development.js" : "https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"
+            host: "localhost:8080",
+            inject: false,
+            react: prodMode ?
+                "https://unpkg.com/react@16/umd/react.production.min.js" : "https://unpkg.com/react@16/umd/react.development.js",
+            reactdom: prodMode ?
+                "https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" : "https://unpkg.com/react-dom@16/umd/react-dom.development.js"
         }),
     ],
 
@@ -78,4 +73,16 @@ module.exports = {
         "react": "React",
         "react-dom": "ReactDOM"
     }
-};
+}
+
+if (!prodMode) {
+    pack.plugins.push(new webpack.HotModuleReplacementPlugin())
+    pack.devServer = {
+        host: '0.0.0.0',
+        port: 8080,
+        hot: true,
+        historyApiFallback: true
+    }
+}
+
+module.exports = pack

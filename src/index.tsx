@@ -1,9 +1,10 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { Hello } from "./components/Hello";
+import { BrowserRouter } from "react-router-dom";
+import { App } from "./components/App";
 
 const rootElement = document.getElementById("application")
-const rootTSX = <Hello compiler="TypeScript" framework="React" />
+const rootTSX = <BrowserRouter><App /></BrowserRouter>
 
 if (rootElement && rootElement.hasChildNodes()) {
     ReactDOM.hydrate(rootTSX, rootElement)

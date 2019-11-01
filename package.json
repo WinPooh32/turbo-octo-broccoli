@@ -9,11 +9,13 @@
   "devDependencies": {
     "@types/react": "^16.9.11",
     "@types/react-dom": "^16.9.3",
+    "@types/react-router-dom": "^5.1.1",
     "@types/webpack-env": "^1.14.1",
     "clean-webpack-plugin": "^3.0.0",
     "html-webpack-plugin": "^3.2.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
+    "react-router-dom": "^5.1.2",
     "react-snap": "^1.23.0",
     "semantic-ui-react": "^0.87.2",
     "source-map-loader": "^0.2.4",
@@ -30,10 +32,15 @@
   },
   "reactSnap": {
     "source": "dist",
+    "port": "8080",
+    "externalServer": "http://localhost:8080/",
     "minifyHtml": {
       "sortClassName": false,
       "collapseWhitespace": false,
-      "removeComments": true
+      "removeComments": false,
+      "sortAttributes": false,
+      "removeBlobs": false,
+      "fixInsertRule": false
     }
   }
 }
