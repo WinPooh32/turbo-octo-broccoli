@@ -56,7 +56,7 @@ let pack = {
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: "./src/index.html",
-            host: (prodMode) ? "poohreact.netlify.com" : "localhost:8080",
+            host: (prodMode) ? "https://poohreact.netlify.com" : "http://localhost:8080",
             inject: false,
             react: prodMode ?
                 "https://unpkg.com/react@16/umd/react.production.min.js" : "https://unpkg.com/react@16/umd/react.development.js",
